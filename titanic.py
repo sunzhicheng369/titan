@@ -2,7 +2,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 titan = pd.read_csv("./train.csv")
 
@@ -48,3 +48,10 @@ plt.legend()
 
 
 plt.show()
+
+emb_s = titan[["Embarked","Survived"]]
+emb_s['count']=1
+emb_s=pd.pivot_table(emb_s,index="Embarked",columns='Survived',values='count',aggfunc=np.sum)
+emb_s[1]=emb_s[1].fillna(0)
+emb_s["pres"] = emb_s[1]/(emb_s[1]+emb_s[0])
+emb_s[[0,1]].plot(kind="bar")
