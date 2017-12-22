@@ -55,3 +55,4 @@ emb_s=pd.pivot_table(emb_s,index="Embarked",columns='Survived',values='count',ag
 emb_s[1]=emb_s[1].fillna(0)
 emb_s["pres"] = emb_s[1]/(emb_s[1]+emb_s[0])
 emb_s[[0,1]].plot(kind="bar")
+from sklearn.preprocessing import Imputer
